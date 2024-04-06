@@ -1,12 +1,14 @@
 import { Recipe } from "../../domain/entities/Recepie";
 import { RecipeRepository } from "../repositories/RecipeRepository";
 import RecipeModel from "../../domain/entities/RecepieModel";
+import { sequelize } from "../../../Database/Sequelize";
 
 export class PostgresRecipeRepository implements RecipeRepository {
     async createRecipe(recipe: Recipe): Promise<Recipe> {
         try {
             const newRecipe = await RecipeModel.create({
                 name: recipe.name,
+                nacionality: recipe.nacionality,
                 ingredients: recipe.ingredients,
                 preparation: recipe.preparation,
                 difficulty: recipe.difficulty,
@@ -22,6 +24,7 @@ export class PostgresRecipeRepository implements RecipeRepository {
             await RecipeModel.update(
                 {
                     name: recipe.name,
+                    nacionality: recipe.nacionality,
                     ingredients: recipe.ingredients,
                     preparation: recipe.preparation,
                     difficulty: recipe.difficulty,
@@ -63,6 +66,28 @@ export class PostgresRecipeRepository implements RecipeRepository {
             return recipe ? recipe.toJSON() as Recipe : null;
         } catch (error) {
             throw new Error(`Error finding recipe by ID: ${(error as Error).message}`);
+        }
+    }
+
+    async getRecipesByDifficulty(nacionality: string): Promise<Recipe[]> {
+        try {
+            const [rows, metadata] = await sequelize.query(
+                'SELECT * FROM recipes WHERE nacionality = :nacionality', 
+                { replacements: { nacionality } }
+            );
+            const recipes: Recipe[] = rows.map((row: any) => {
+                return {
+                    id: row.id,
+                    name: row.name,
+                    nacionality: row.nacionality, // Asegúrate de mapear todas las propiedades necesarias
+                    ingredients: row.ingredients,
+                    preparation: row.preparation,
+                    difficulty: row.difficulty
+                };
+            });
+            return recipes;
+        } catch (error) {
+            throw new Error(`Error getting recipes by difficulty: ${(error as Error).message}`);
         }
     }
 }

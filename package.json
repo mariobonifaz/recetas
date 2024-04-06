@@ -12,7 +12,8 @@
     "body-parser": "^1.20.2",
     "express": "^4.19.1",
     "pg": "^8.11.3",
-    "sequelize": "^6.37.1"
+    "sequelize": "^6.37.1",
+    "sql-functions-kit": "^1.0.1"
   },
   "devDependencies": {
     "@types/body-parser": "^1.19.5",

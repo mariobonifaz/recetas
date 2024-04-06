@@ -1,6 +1,5 @@
 // controllers/RecipeController.ts
 import { Request, Response } from 'express';
-import { Recipe } from '../../domain/entities/Recepie';
 import { RecipeService } from '../../applicartion/services/user-cases/RecepieService';
 
 export const createRecipe = async (req: Request, res: Response, recipeService: RecipeService) => {
@@ -69,6 +68,21 @@ export const getRecipeById = async (req: Request, res: Response, recipeService: 
             return;
         }
         res.status(200).json(recipe);
+    } catch (err) {
+        if (err instanceof Error) {
+            res.status(400).json({ error: err.message });
+        } else {
+            // Manejar otros tipos de errores aquí
+            res.status(500).json({ error: "Internal server error" });
+        }
+    }
+};
+
+export const getRecipesByDifficulty = async (req: Request, res: Response, recipeService: RecipeService) => {
+    try {
+        const { nacionality } = req.params; // Obtenemos la dificultad de los parámetros de la solicitud
+        const recipes = await recipeService.getRecipesByDifficulty(nacionality);
+        res.status(200).json(recipes);
     } catch (err) {
         if (err instanceof Error) {
             res.status(400).json({ error: err.message });

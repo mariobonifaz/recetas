@@ -21,6 +21,7 @@ app.put('/recipes/:id', (req, res) => (0, RecepieController_1.updateRecipe)(req,
 app.delete('/recipes/:id', (req, res) => (0, RecepieController_1.deleteRecipe)(req, res, recipeService));
 app.get('/recipes', (req, res) => (0, RecepieController_1.getAllRecipes)(req, res, recipeService));
 app.get('/recipes/:id', (req, res) => (0, RecepieController_1.getRecipeById)(req, res, recipeService));
+app.get('/recipes/difficulty/:nacionality', (req, res) => (0, RecepieController_1.getRecipesByDifficulty)(req, res, recipeService));
 // Iniciar servidor
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);

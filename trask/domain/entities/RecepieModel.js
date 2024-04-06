@@ -7,12 +7,16 @@ const RecipeModel = Sequelize_1.sequelize.define('Recipe', {
         type: sequelize_1.DataTypes.STRING,
         allowNull: false,
     },
+    nacionality: {
+        type: sequelize_1.DataTypes.STRING,
+        allowNull: false,
+    },
     ingredients: {
-        type: sequelize_1.DataTypes.TEXT,
+        type: sequelize_1.DataTypes.STRING,
         allowNull: false,
     },
     preparation: {
-        type: sequelize_1.DataTypes.TEXT,
+        type: sequelize_1.DataTypes.STRING,
         allowNull: false,
     },
     difficulty: {

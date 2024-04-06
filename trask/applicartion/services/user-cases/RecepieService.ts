@@ -1,6 +1,8 @@
 // services/RecipeService.ts
 import { Recipe } from '../../../domain/entities/Recepie';
 import { RecipeRepository } from '../../../infraestrucuture/repositories/RecipeRepository';
+import { QueryTypes} from 'sequelize';
+import { sequelize } from '../../../../Database/Sequelize';
 
 export class RecipeService {
     constructor(private recipeRepository: RecipeRepository) {}
@@ -50,6 +52,18 @@ export class RecipeService {
             return await this.recipeRepository.findById(recipeId);
         } catch (error) {
             throw new Error(`Error finding recipe by ID: ${(error as Error).message}`);
+        }
+    }
+
+    async getRecipesByDifficulty(nacionality: string): Promise<Recipe[]> {
+        try {
+            const recipes = await sequelize.query(
+                'SELECT * FROM recipes WHERE nacionality = :nacionality', 
+                { replacements: { nacionality }, type: QueryTypes.SELECT }
+            );
+            return recipes as Recipe[];
+        } catch (error) {
+            throw new Error(`Error getting recipes by nacionality: ${(error as Error).message}`);
         }
     }
 }

@@ -14,12 +14,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PostgresRecipeRepository = void 0;
 const RecepieModel_1 = __importDefault(require("../../domain/entities/RecepieModel"));
+const Sequelize_1 = require("../../../Database/Sequelize");
 class PostgresRecipeRepository {
     createRecipe(recipe) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const newRecipe = yield RecepieModel_1.default.create({
                     name: recipe.name,
+                    nacionality: recipe.nacionality,
                     ingredients: recipe.ingredients,
                     preparation: recipe.preparation,
                     difficulty: recipe.difficulty,
@@ -36,6 +38,7 @@ class PostgresRecipeRepository {
             try {
                 yield RecepieModel_1.default.update({
                     name: recipe.name,
+                    nacionality: recipe.nacionality,
                     ingredients: recipe.ingredients,
                     preparation: recipe.preparation,
                     difficulty: recipe.difficulty,
@@ -82,6 +85,27 @@ class PostgresRecipeRepository {
             }
             catch (error) {
                 throw new Error(`Error finding recipe by ID: ${error.message}`);
+            }
+        });
+    }
+    getRecipesByDifficulty(nacionality) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const [rows, metadata] = yield Sequelize_1.sequelize.query('SELECT * FROM recipes WHERE nacionality = :nacionality', { replacements: { nacionality } });
+                const recipes = rows.map((row) => {
+                    return {
+                        id: row.id,
+                        name: row.name,
+                        nacionality: row.nacionality, // Asegúrate de mapear todas las propiedades necesarias
+                        ingredients: row.ingredients,
+                        preparation: row.preparation,
+                        difficulty: row.difficulty
+                    };
+                });
+                return recipes;
+            }
+            catch (error) {
+                throw new Error(`Error getting recipes by difficulty: ${error.message}`);
             }
         });
     }
