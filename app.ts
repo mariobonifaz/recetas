@@ -4,6 +4,10 @@ import { createRecipe, updateRecipe, deleteRecipe, getAllRecipes, getRecipeById,
 import { PostgresRecipeRepository } from './trask/infraestrucuture/repositories/PostgresRecipeRepository'; // Suponiendo que estás utilizando PostgreSQL como base de datos
 import { RecipeService } from './trask/applicartion/services/user-cases/RecepieService';
 
+import { PostgresUserRepository } from './trask/infraestrucuture/repositories/PostgresUserRepository'
+import { createUser, loginUser, updateUser, deleteUser,getAllUsers } from './trask/infraestrucuture/controllers/UserController'
+import { UserService } from './trask/applicartion/services/user-cases/UserService';
+
 const app = express();
 const PORT = 3000;
 
@@ -11,8 +15,10 @@ const PORT = 3000;
 app.use(bodyParser.json());
 
 // Dependency Injection
-const recipeRepository = new PostgresRecipeRepository(); // Instancia del repositorio de recetas
-const recipeService = new RecipeService(recipeRepository); // Instancia del servicio de recetas
+const recipeRepository = new PostgresRecipeRepository();
+const recipeService = new RecipeService(recipeRepository);
+const userRepository = new PostgresUserRepository();
+const userService = new UserService(userRepository);
 
 // Rutas
 app.post('/recipes', (req, res) => createRecipe(req, res, recipeService));
@@ -21,6 +27,12 @@ app.delete('/recipes/:id', (req, res) => deleteRecipe(req, res, recipeService));
 app.get('/recipes', (req, res) => getAllRecipes(req, res, recipeService));
 app.get('/recipes/:id', (req, res) => getRecipeById(req, res, recipeService));
 app.get('/recipes/nacionality/:nacionality', (req, res) => getRecipesByDifficulty(req, res, recipeService));
+
+app.post('/users', (req, res) => createUser(req, res, userService));
+app.put('/users/:id', (req, res) =>updateUser(req, res, userService));
+app.delete('/users/:id', (req,res) => deleteUser(req, res, userService));
+app.get('/users', (req,res) => getAllUsers(req, res, userService));
+app.post('/login', (req, res) => loginUser(req, res, userService));
 
 // Iniciar servidor
 app.listen(PORT, () => {
