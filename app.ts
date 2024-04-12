@@ -1,7 +1,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import { createRecipe, updateRecipe, deleteRecipe, getAllRecipes, getRecipeById, getRecipesByDifficulty } from './trask/infraestrucuture/controllers/RecepieController';
-import { PostgresRecipeRepository } from './trask/infraestrucuture/repositories/PostgresRecipeRepository'; // Suponiendo que estás utilizando PostgreSQL como base de datos
+import { PostgresRecipeRepository } from './trask/infraestrucuture/repositories/PostgresRecipeRepository';
 import { RecipeService } from './trask/applicartion/services/user-cases/RecepieService';
 
 import { PostgresUserRepository } from './trask/infraestrucuture/repositories/PostgresUserRepository'
@@ -38,4 +38,3 @@ app.post('/login', (req, res) => loginUser(req, res, userService));
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
-

@@ -15,7 +15,8 @@ const UserModel = sequelize.define('User', {
     type: DataTypes.STRING,
     allowNull: false,
   },
-}, {
+}, 
+{
   tableName: "users",
   freezeTableName: true
 });

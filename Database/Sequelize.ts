@@ -1,6 +1,6 @@
 import { Sequelize } from 'sequelize';
 
-export const sequelize = new Sequelize('recetas_db', 'postgres', 'POSTGRES', {
+export const sequelize = new Sequelize( 'recetas_db', 'postgres', 'POSTGRES', {
     host: 'localhost',
     port: 5432,
     dialect: 'postgres',

@@ -9,7 +9,7 @@ const RecipeModel = sequelize.define('Recipe', {
   nacionality: {
     type: DataTypes.STRING,
     allowNull: false,
-},
+  },
   ingredients: {
       type: DataTypes.STRING,
       allowNull: false,

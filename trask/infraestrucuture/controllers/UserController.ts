@@ -22,7 +22,6 @@ export const updateUser = async (req: Request, res: Response, userService: UserS
         if (err instanceof Error) {
             res.status(400).json({ error: err.message });
         } else {
-            // Manejar otros tipos de errores aquí
             res.status(500).json({ error: "Internal server error" });
         }
     }
@@ -37,7 +36,6 @@ export const deleteUser = async(req:Request, res:Response, userService: UserServ
         if (err instanceof Error) {
             res.status(400).json({ error: err.message });
         } else {
-            // Manejar otros tipos de errores aquí
             res.status(500).json({ error: "Internal server error" });
         }
     }
@@ -51,7 +49,6 @@ export const getAllUsers = async (req: Request, res:Response, userService: UserS
         if (err instanceof Error) {
             res.status(400).json({ error: err.message });
         } else {
-            // Manejar otros tipos de errores aquí
             res.status(500).json({ error: "Internal server error" });
         }
     }

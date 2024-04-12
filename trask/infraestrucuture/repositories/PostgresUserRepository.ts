@@ -1,8 +1,6 @@
 import { User } from '../../domain/entities/user'
 import { UserRepository } from "../repositories/UserRepository";
 import UserModel from "../../domain/entities/UserModel";
-import { Recipe } from '../../domain/entities/Recepie';
-import { deleteUser } from '../controllers/UserController';
 
 export class PostgresUserRepository implements UserRepository {
     async createUser(user: User): Promise<User> {

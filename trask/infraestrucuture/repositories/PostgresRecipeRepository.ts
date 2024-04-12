@@ -79,7 +79,7 @@ export class PostgresRecipeRepository implements RecipeRepository {
                 return {
                     id: row.id,
                     name: row.name,
-                    nacionality: row.nacionality, // Asegúrate de mapear todas las propiedades necesarias
+                    nacionality: row.nacionality,
                     ingredients: row.ingredients,
                     preparation: row.preparation,
                     difficulty: row.difficulty

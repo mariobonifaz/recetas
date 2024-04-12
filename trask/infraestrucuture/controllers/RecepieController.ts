@@ -9,7 +9,6 @@ export const createRecipe = async (req: Request, res: Response, recipeService: R
         if (err instanceof Error) {
             res.status(400).json({ error: err.message });
         } else {
-            // Manejar otros tipos de errores aquí
             res.status(500).json({ error: "Internal server error" });
         }
     }
@@ -23,7 +22,6 @@ export const updateRecipe = async (req: Request, res: Response, recipeService: R
         if (err instanceof Error) {
             res.status(400).json({ error: err.message });
         } else {
-            // Manejar otros tipos de errores aquí
             res.status(500).json({ error: "Internal server error" });
         }
     }
@@ -38,7 +36,6 @@ export const deleteRecipe = async (req: Request, res: Response, recipeService: R
         if (err instanceof Error) {
             res.status(400).json({ error: err.message });
         } else {
-            // Manejar otros tipos de errores aquí
             res.status(500).json({ error: "Internal server error" });
         }
     }
@@ -52,7 +49,6 @@ export const getAllRecipes = async (req: Request, res: Response, recipeService: 
         if (err instanceof Error) {
             res.status(400).json({ error: err.message });
         } else {
-            // Manejar otros tipos de errores aquí
             res.status(500).json({ error: "Internal server error" });
         }
     }
@@ -71,7 +67,6 @@ export const getRecipeById = async (req: Request, res: Response, recipeService: 
         if (err instanceof Error) {
             res.status(400).json({ error: err.message });
         } else {
-            // Manejar otros tipos de errores aquí
             res.status(500).json({ error: "Internal server error" });
         }
     }
@@ -79,14 +74,13 @@ export const getRecipeById = async (req: Request, res: Response, recipeService: 
 
 export const getRecipesByDifficulty = async (req: Request, res: Response, recipeService: RecipeService) => {
     try {
-        const { nacionality } = req.params; // Obtenemos la dificultad de los parámetros de la solicitud
+        const { nacionality } = req.params;
         const recipes = await recipeService.getRecipesByDifficulty(nacionality);
         res.status(200).json(recipes);
     } catch (err) {
         if (err instanceof Error) {
             res.status(400).json({ error: err.message });
         } else {
-            // Manejar otros tipos de errores aquí
             res.status(500).json({ error: "Internal server error" });
         }
     }
