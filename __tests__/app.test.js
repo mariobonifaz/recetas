@@ -8,7 +8,7 @@ afterAll(done => {
   done();
 });
 
-describe('POST /recipes', () => {
+describe('POST /login', () => {
   it('debería crear una nueva receta', async () => {
     const newRecipeData = {
         name: 'Nueva Receta',

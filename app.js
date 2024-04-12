@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const body_parser_1 = __importDefault(require("body-parser"));
 const RecepieController_1 = require("./trask/infraestrucuture/controllers/RecepieController");
-const PostgresRecipeRepository_1 = require("./trask/infraestrucuture/repositories/PostgresRecipeRepository"); // Suponiendo que estás utilizando PostgreSQL como base de datos
+const PostgresRecipeRepository_1 = require("./trask/infraestrucuture/repositories/PostgresRecipeRepository");
 const RecepieService_1 = require("./trask/applicartion/services/user-cases/RecepieService");
 const PostgresUserRepository_1 = require("./trask/infraestrucuture/repositories/PostgresUserRepository");
 const UserController_1 = require("./trask/infraestrucuture/controllers/UserController");
@@ -16,8 +16,8 @@ const PORT = 3000;
 // Middleware
 app.use(body_parser_1.default.json());
 // Dependency Injection
-const recipeRepository = new PostgresRecipeRepository_1.PostgresRecipeRepository(); // Instancia del repositorio de recetas
-const recipeService = new RecepieService_1.RecipeService(recipeRepository); // Instancia del servicio de recetas
+const recipeRepository = new PostgresRecipeRepository_1.PostgresRecipeRepository();
+const recipeService = new RecepieService_1.RecipeService(recipeRepository);
 const userRepository = new PostgresUserRepository_1.PostgresUserRepository();
 const userService = new UserService_1.UserService(userRepository);
 // Rutas
