@@ -12,7 +12,7 @@ const PostgresUserRepository_1 = require("./trask/infraestrucuture/repositories/
 const UserController_1 = require("./trask/infraestrucuture/controllers/UserController");
 const UserService_1 = require("./trask/applicartion/services/user-cases/UserService");
 const app = (0, express_1.default)();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 // Middleware
 app.use(body_parser_1.default.json());
 // Dependency Injection
@@ -27,6 +27,9 @@ app.delete('/recipes/:id', (req, res) => (0, RecepieController_1.deleteRecipe)(r
 app.get('/recipes', (req, res) => (0, RecepieController_1.getAllRecipes)(req, res, recipeService));
 app.get('/recipes/:id', (req, res) => (0, RecepieController_1.getRecipeById)(req, res, recipeService));
 app.get('/recipes/nacionality/:nacionality', (req, res) => (0, RecepieController_1.getRecipesByDifficulty)(req, res, recipeService));
+app.get('/health', (req, res) => {
+    res.status(200).send('OK');
+});
 app.post('/users', (req, res) => (0, UserController_1.createUser)(req, res, userService));
 app.put('/users/:id', (req, res) => (0, UserController_1.updateUser)(req, res, userService));
 app.delete('/users/:id', (req, res) => (0, UserController_1.deleteUser)(req, res, userService));
