@@ -20,7 +20,6 @@ const createRecipe = (req, res, recipeService) => __awaiter(void 0, void 0, void
             res.status(400).json({ error: err.message });
         }
         else {
-            // Manejar otros tipos de errores aquí
             res.status(500).json({ error: "Internal server error" });
         }
     }
@@ -36,7 +35,6 @@ const updateRecipe = (req, res, recipeService) => __awaiter(void 0, void 0, void
             res.status(400).json({ error: err.message });
         }
         else {
-            // Manejar otros tipos de errores aquí
             res.status(500).json({ error: "Internal server error" });
         }
     }
@@ -53,7 +51,6 @@ const deleteRecipe = (req, res, recipeService) => __awaiter(void 0, void 0, void
             res.status(400).json({ error: err.message });
         }
         else {
-            // Manejar otros tipos de errores aquí
             res.status(500).json({ error: "Internal server error" });
         }
     }
@@ -69,7 +66,6 @@ const getAllRecipes = (req, res, recipeService) => __awaiter(void 0, void 0, voi
             res.status(400).json({ error: err.message });
         }
         else {
-            // Manejar otros tipos de errores aquí
             res.status(500).json({ error: "Internal server error" });
         }
     }
@@ -90,7 +86,6 @@ const getRecipeById = (req, res, recipeService) => __awaiter(void 0, void 0, voi
             res.status(400).json({ error: err.message });
         }
         else {
-            // Manejar otros tipos de errores aquí
             res.status(500).json({ error: "Internal server error" });
         }
     }
@@ -98,7 +93,7 @@ const getRecipeById = (req, res, recipeService) => __awaiter(void 0, void 0, voi
 exports.getRecipeById = getRecipeById;
 const getRecipesByDifficulty = (req, res, recipeService) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const { nacionality } = req.params; // Obtenemos la dificultad de los parámetros de la solicitud
+        const { nacionality } = req.params;
         const recipes = yield recipeService.getRecipesByDifficulty(nacionality);
         res.status(200).json(recipes);
     }
@@ -107,7 +102,6 @@ const getRecipesByDifficulty = (req, res, recipeService) => __awaiter(void 0, vo
             res.status(400).json({ error: err.message });
         }
         else {
-            // Manejar otros tipos de errores aquí
             res.status(500).json({ error: "Internal server error" });
         }
     }

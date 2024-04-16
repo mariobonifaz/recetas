@@ -35,7 +35,6 @@ const updateUser = (req, res, userService) => __awaiter(void 0, void 0, void 0, 
             res.status(400).json({ error: err.message });
         }
         else {
-            // Manejar otros tipos de errores aquí
             res.status(500).json({ error: "Internal server error" });
         }
     }
@@ -52,7 +51,6 @@ const deleteUser = (req, res, userService) => __awaiter(void 0, void 0, void 0, 
             res.status(400).json({ error: err.message });
         }
         else {
-            // Manejar otros tipos de errores aquí
             res.status(500).json({ error: "Internal server error" });
         }
     }
@@ -68,7 +66,6 @@ const getAllUsers = (req, res, userService) => __awaiter(void 0, void 0, void 0,
             res.status(400).json({ error: err.message });
         }
         else {
-            // Manejar otros tipos de errores aquí
             res.status(500).json({ error: "Internal server error" });
         }
     }
