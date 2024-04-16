@@ -9,12 +9,15 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^5.1.1",
     "body-parser": "^1.20.2",
     "express": "^4.19.1",
     "pg": "^8.11.3",
-    "sequelize": "^6.37.1"
+    "sequelize": "^6.37.1",
+    "sql-functions-kit": "^1.0.1"
   },
   "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
     "@types/body-parser": "^1.19.5",
     "@types/express": "^4.17.21",
     "typescript": "^5.4.3"

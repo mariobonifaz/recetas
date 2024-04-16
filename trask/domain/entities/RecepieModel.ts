@@ -6,12 +6,16 @@ const RecipeModel = sequelize.define('Recipe', {
       type: DataTypes.STRING,
       allowNull: false,
   },
+  nacionality: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
   ingredients: {
-      type: DataTypes.TEXT,
+      type: DataTypes.STRING,
       allowNull: false,
   },
   preparation: {
-      type: DataTypes.TEXT,
+      type: DataTypes.STRING,
       allowNull: false,
   },
   difficulty: {

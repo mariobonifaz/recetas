@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getRecipeById = exports.getAllRecipes = exports.deleteRecipe = exports.updateRecipe = exports.createRecipe = void 0;
+exports.getRecipesByDifficulty = exports.getRecipeById = exports.getAllRecipes = exports.deleteRecipe = exports.updateRecipe = exports.createRecipe = void 0;
 const createRecipe = (req, res, recipeService) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const newRecipe = yield recipeService.createRecipe(req.body);
@@ -20,7 +20,6 @@ const createRecipe = (req, res, recipeService) => __awaiter(void 0, void 0, void
             res.status(400).json({ error: err.message });
         }
         else {
-            // Manejar otros tipos de errores aquí
             res.status(500).json({ error: "Internal server error" });
         }
     }
@@ -36,7 +35,6 @@ const updateRecipe = (req, res, recipeService) => __awaiter(void 0, void 0, void
             res.status(400).json({ error: err.message });
         }
         else {
-            // Manejar otros tipos de errores aquí
             res.status(500).json({ error: "Internal server error" });
         }
     }
@@ -53,7 +51,6 @@ const deleteRecipe = (req, res, recipeService) => __awaiter(void 0, void 0, void
             res.status(400).json({ error: err.message });
         }
         else {
-            // Manejar otros tipos de errores aquí
             res.status(500).json({ error: "Internal server error" });
         }
     }
@@ -69,7 +66,6 @@ const getAllRecipes = (req, res, recipeService) => __awaiter(void 0, void 0, voi
             res.status(400).json({ error: err.message });
         }
         else {
-            // Manejar otros tipos de errores aquí
             res.status(500).json({ error: "Internal server error" });
         }
     }
@@ -90,9 +86,24 @@ const getRecipeById = (req, res, recipeService) => __awaiter(void 0, void 0, voi
             res.status(400).json({ error: err.message });
         }
         else {
-            // Manejar otros tipos de errores aquí
             res.status(500).json({ error: "Internal server error" });
         }
     }
 });
 exports.getRecipeById = getRecipeById;
+const getRecipesByDifficulty = (req, res, recipeService) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { nacionality } = req.params;
+        const recipes = yield recipeService.getRecipesByDifficulty(nacionality);
+        res.status(200).json(recipes);
+    }
+    catch (err) {
+        if (err instanceof Error) {
+            res.status(400).json({ error: err.message });
+        }
+        else {
+            res.status(500).json({ error: "Internal server error" });
+        }
+    }
+});
+exports.getRecipesByDifficulty = getRecipesByDifficulty;

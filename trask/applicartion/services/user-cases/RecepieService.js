@@ -10,6 +10,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.RecipeService = void 0;
+const sequelize_1 = require("sequelize");
+const Sequelize_1 = require("../../../../Database/Sequelize");
 class RecipeService {
     constructor(recipeRepository) {
         this.recipeRepository = recipeRepository;
@@ -69,6 +71,17 @@ class RecipeService {
             }
             catch (error) {
                 throw new Error(`Error finding recipe by ID: ${error.message}`);
+            }
+        });
+    }
+    getRecipesByDifficulty(nacionality) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const recipes = yield Sequelize_1.sequelize.query('SELECT * FROM recipes WHERE nacionality = :nacionality', { replacements: { nacionality }, type: sequelize_1.QueryTypes.SELECT });
+                return recipes;
+            }
+            catch (error) {
+                throw new Error(`Error getting recipes by nacionality: ${error.message}`);
             }
         });
     }
